@@ -1,0 +1,73 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.brazchat";
+option java_outer_classname = "BrazChatProto";
+option objc_class_prefix = "BCH";
+
+package brazchat;
+
+
+service Messaging {
+  rpc Greeting (GreetingRequest) returns (GreetingReply) {} //Just a handshake to test connection
+  rpc GetMessages (GetMessagesRequest) returns (GetMessagesReply) {}
+  rpc GetMessageLogs (GetMessageLogsRequest) returns (GetMessageLogsReply) {}
+  rpc SendMessage (SendMessageRequest) returns (SendMessageReply) {}
+  rpc WelcomeMessage (WelcomeMessageRequest) returns (WelcomeMessageReply) {}
+}
+
+message GreetingRequest{
+}
+
+message GreetingReply{
+}
+
+message GetMessagesRequest {
+  string clientUsername = 1;
+}
+
+
+message GetMessagesReply {
+  string confirmation = 1;
+  string messages = 2;
+}
+
+message GetMessageLogsRequest{
+
+}
+
+message GetMessageLogsReply{
+	string log = 1;
+}
+
+message SendMessageRequest {
+	string clientUsername = 1;
+	string message = 2;
+	string color = 3;
+}
+
+message SendMessageReply{
+	string confirmation = 1;
+}
+
+message WelcomeMessageRequest{ //Feels redundant to have this here lol.
+}
+
+message WelcomeMessageReply{
+	string WelcomeLogo = 1;
+	string MOTD = 2;
+}
